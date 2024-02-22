@@ -3,9 +3,9 @@
         <img class="strDrinkThumb" v-bind:src="strDrinkThumb"/>
         <div>
             <h2 class="strDrink">{{ strDrink }}</h2>
-            <h3 class="strCategory">{{ strCategory }}</h3>
-            <h3 class="strGlass">{{ strGlass }}</h3>
-            <h3 class="strAlcoholic">{{ strAlcoholic }}</h3>
+            <p class="strCategory">{{ strCategory }}</p>
+            <p class="strGlass">{{ strGlass }}</p>
+            <p class="strAlcoholic">{{ strAlcoholic }}</p>
         </div>
     </div>
 </template>
@@ -14,19 +14,19 @@
     export default {
         name: 'CocktailCard',
         props: {
-            // idDrink: {type: String, required: true},
-            strDrink: {type: String, required: true},
+            // idDrink: String,
+            strDrink: String,
             strCategory: String,
             strAlcoholic: String,
             strGlass: String,
-            strInstructions: String,
-            strIngredient1: String,
-            strIngredient2: String,
-            strIngredient3: String,
-            strIngredient4: String,
-            strIngredient5: String,
-            strIngredient6: String,
-            strDrinkThumb: String
+            // strInstructions: String,
+            // strIngredient1: String,
+            // strIngredient2: String,
+            // strIngredient3: String,
+            // strIngredient4: String,
+            // strIngredient5: String,
+            // strIngredient6: String,
+            strDrinkThumb: {type: String, default: "https://cdn-icons-png.flaticon.com/512/2193/2193419.png"}
         }
     }
 </script>

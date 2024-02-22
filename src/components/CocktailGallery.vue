@@ -2,11 +2,11 @@
     <div class="cocktail-gallery">
         <CocktailCard
             v-for="cocktail in cocktails"
-            :strDrinkThumb="cocktail.strDrinkThumb"
             :strDrink="cocktail.strDrink"
             :strCategory="cocktail.strCategory"
             :strGlass="cocktail.strGlass"
-            :strAlcoholic="cocktail.strAlcoholic" />
+            :strAlcoholic="cocktail.strAlcoholic"
+            :strDrinkThumb="cocktail.strDrinkThumb"/>
     </div>
 </template>
 
@@ -30,6 +30,7 @@
         methods: {
             async retrieveCocktailData() {
                 this.cocktails = await CocktailData.getCocktailData()
+                // console.log(this.cocktails[0].strDrink)
             }
         }
     }
