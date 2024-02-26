@@ -3,9 +3,9 @@
         <img class="strDrinkThumb" v-bind:src="strDrinkThumb"/>
         <div>
             <h2 class="strDrink">{{ strDrink }}</h2>
-            <p class="strCategory">{{ strCategory }}</p>
-            <p class="strGlass">{{ strGlass }}</p>
-            <p class="strAlcoholic">{{ strAlcoholic }}</p>
+            <p class="strCategory">Category: {{ strCategory }}</p>
+            <p class="strGlass">Glass: {{ strGlass }}</p>
+            <p class="strAlcoholic">Type: {{ strAlcoholic }}</p>
         </div>
     </div>
 </template>
@@ -34,5 +34,16 @@
 <style scoped>
     .cocktail-card {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        background-color: dodgerblue;
+        height: 420px;
+        margin: 2px;
+        padding-top: 22px;
+        padding-bottom: 15px;
+    }
+
+    .strDrinkThumb {
+        width: 275px;
     }
 </style>

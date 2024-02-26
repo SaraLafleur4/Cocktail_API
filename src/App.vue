@@ -1,14 +1,16 @@
 <template>
   <div id="app">
     <header>
-      <h1>header here</h1>
+      <h1>Welcome to the Cocktail Gallery!</h1>
     </header>
+
     <main>
-      <h2>cocktail gallery here</h2>
+      <h1>formulaire</h1>
       <CocktailGallery />
     </main>
+
     <footer>
-      <p>footer here</p>
+      <p>© Sara Lafleur 2024 - IMAC 2</p>
     </footer>
   </div>
 </template>
@@ -23,3 +25,27 @@
     }
   }
 </script>
+
+<style scoped>
+    header {
+      display: flex;
+      height: 100px;
+      text-align: center;
+      background-color: black;
+      padding-top: 20px;
+      justify-content: space-around;
+    }
+
+    main {
+      width: 1024px;
+    }
+
+    footer {
+      display: flexbox;
+      height: 100px;
+      text-align: center;
+      background-color: black;
+      padding-top: 40px;
+      justify-content: space-around;
+    }
+</style>
