@@ -2,8 +2,9 @@
     <div class="cocktail-gallery">
         <div class="gallery-options">
             <input type="text" v-model="search" placeholder="Search for a Cocktail...">
-            <!-- <button v-if="search" v-on:click="searchCocktail">search</button> -->
+            <button v-if="search" v-on:click="applyFilters">search</button>
             <button v-if="search" v-on:click="cleanSearch">clear</button>
+            <button v-on:click="retrieveCocktailData">reset</button>
 
             <label for="cocktail-sort">Sort by: </label>
             <select v-model="cocktailSortType" id="cocktail-sort">
@@ -40,13 +41,13 @@
         },
         computed: {
             organizedCocktailData: function() {
-                let field = "";
+                let field = ""
                 if (["AZName", "ZAName"].includes(this.cocktailSortType)) {
-                    field = "strDrink";
+                    field = "strDrink"
                 } else if (["AZCategory", "ZACategory"].includes(this.cocktailSortType)) {
-                    field = "strCategory";
+                    field = "strCategory"
                 } else if (["AZGlass", "ZAGlass"].includes(this.cocktailSortType)) {
-                    field = "strGlass";
+                    field = "strGlass"
                 } else {
                     console.error("Unexpected value for cocktailSortType: ", this.cocktailSortType);
                 }
@@ -71,11 +72,9 @@
         methods: {
             async retrieveCocktailData() {
                 this.cocktails = await CocktailData.getCocktailData()
+                this.cleanSearch()
                 this.applyFilters()
             },
-            // searchCocktail: function () {
-            //     this.cocktails
-            // },
             cleanSearch: function() {
                 this.search = ""
             },
