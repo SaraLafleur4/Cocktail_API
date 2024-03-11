@@ -5,7 +5,6 @@
     </header>
 
     <main>
-      <h1>formulaire</h1>
       <CocktailGallery />
     </main>
 
