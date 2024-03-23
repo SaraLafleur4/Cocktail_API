@@ -1,30 +1,16 @@
 <template>
     <div class="cocktail-gallery">
         <div class="gallery-options">
-            <input type="text" id="search" v-model="search" placeholder="Search for a Cocktail...">
-            <button v-if="search" v-on:click="applyFilters">search</button>
-            <button v-if="search" v-on:click="cleanSearch">clear</button>
+            <GalleryOptionSearch v-model:search="search"/>
+            <button v-if="search" @click="applyPreferences">search</button>
 
-            <label for="cocktail-sort">Sort by: </label>
-            <select v-model="cocktailSortType" id="cocktail-sort">
-                <option name="AZName" value="AZName">Name A -> Z</option>
-                <option name="ZAName" value="ZAName">Name Z -> A</option>
-                <option name="AZCategory" value="AZCategory">Category A -> Z</option>
-                <option name="ZACategory" value="ZACategory">Category Z -> A</option>
-                <option name="AZGlass" value="AZGlass">Glass A -> Z</option>
-                <option name="ZAGlass" value="ZAGlass">Glass Z -> A</option>
-            </select>
-
-            <input type="checkbox" v-model="aIsChecked" id="alcoholic" value="alcoholic">
-            <label for="alcoholic">alcoholic</label>
-            <input type="checkbox" v-model="NaIsChecked" id="non-alcoholic" value="non-alcoholic">
-            <label for="non-alcoholic">non-alcoholic</label>
-
-            <button v-on:click="applyFilters">filter</button>
-
-            <button v-on:click="resetAllCocktailData">reset all</button>
+            <!-- <GalleryOptionAFilter v-model:AChecked="AChecked" v-model:NAChecked="NAChecked"/> -->
+            <!-- TODO: fix -->
+            <GalleryOptionSort v-model:cocktailSortType="cocktailSortType"/>
+            <button @click="applyPreferences">sort</button>
         </div>
-
+        <button @click="resetAllCocktailData">reset all</button>
+        
         <div class="gallery-display">
             <CocktailCard
             v-for="cocktail in cocktails"
@@ -39,26 +25,19 @@
 
 <script>
     import CocktailData from '@/services/api/cocktailAPI.js'
+
+    import GalleryOptionSearch from '@/components/GalleryOptionSearch.vue'
+    import GalleryOptionAFilter from '@/components/GalleryOptionAFilter.vue'
+    import GalleryOptionSort from '@/components/GalleryOptionSort.vue'
     import CocktailCard from '@/components/CocktailCard.vue'
 
     export default {
         name: 'CocktailGallery',
         components: {
+            GalleryOptionSearch,
+            GalleryOptionAFilter,
+            GalleryOptionSort,
             CocktailCard
-        },
-        watch: {
-            search: function(newSearch) {
-                localStorage.setItem("search", newSearch)
-            },
-            cocktailSortType: function(newCocktailSortType) {
-                localStorage.setItem("cocktailSortType", newCocktailSortType)
-            },
-            aIsChecked: function(newAIsChecked) {
-                localStorage.setItem("aIsChecked", newAIsChecked)
-            },
-            NaIsChecked: function(newNaIsChecked) {
-                localStorage.setItem("NaIsChecked", newNaIsChecked)
-            }
         },
         created: async function() {
             this.retrieveCocktailData()
@@ -108,26 +87,27 @@
                 cocktails: [],
                 search: localStorage.getItem("search") || "",
                 cocktailSortType: localStorage.getItem("cocktailSortType") || "AZName",
-                aIsChecked: localStorage.getItem("aIsChecked") || false,    // TODO: fix
-                NaIsChecked: localStorage.getItem("NaIsChecked") || false   // TODO: fix
+                AChecked: localStorage.getItem("AChecked") || false,    // TODO: fix
+                NAChecked: localStorage.getItem("NAChecked") || false   // TODO: fix
             }
         },
         methods: {
             async retrieveCocktailData() {
                 this.cocktails = await CocktailData.getCocktailData()
-                this.applyFilters()
+                this.applyPreferences()
             },
             async resetAllCocktailData() {
-                this.cleanSearch()
-                this.aIsChecked = false
-                this.NaIsChecked = false
-                this.applyFilters()
+                this.cleanSearch()       // TODO: fix if needed
+                this.AChecked = false
+                this.NAChecked = false
+                this.cocktailSortType = "AZName"
+                this.applyPreferences()
                 this.retrieveCocktailData()
             },
             cleanSearch: function() {
                 this.search = ""
             },
-            applyFilters: function() {
+            applyPreferences: function() {
                 this.cocktails = this.organizedCocktailData
             }
         }
@@ -136,10 +116,8 @@
 
 <style scoped>
     .gallery-options {
+        display: flex;
         background-color: rgb(197, 255, 110);
-    }
-    input {
-        margin: 10px;
     }
     button {
         margin: 10px;
