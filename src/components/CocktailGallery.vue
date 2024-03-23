@@ -1,7 +1,7 @@
 <template>
     <div class="cocktail-gallery">
         <div class="gallery-options">
-            <input type="text" v-model="search" placeholder="Search for a Cocktail...">
+            <input type="text" id="search" v-model="search" placeholder="Search for a Cocktail...">
             <button v-if="search" v-on:click="applyFilters">search</button>
             <button v-if="search" v-on:click="cleanSearch">clear</button>
 
@@ -15,14 +15,14 @@
                 <option name="ZAGlass" value="ZAGlass">Glass Z -> A</option>
             </select>
 
-            <input type="checkbox" v-model="aIsChecked" name="alcoholic" value="alcoholic">
-            <label for="alcoholicOrNot">alcoholic</label>
-            <input type="checkbox" v-model="NaIsChecked" name="non-alcoholic" value="non-alcoholic">
-            <label for="alcoholicOrNot">non-alcoholic</label>
+            <input type="checkbox" v-model="aIsChecked" id="alcoholic" value="alcoholic">
+            <label for="alcoholic">alcoholic</label>
+            <input type="checkbox" v-model="NaIsChecked" id="non-alcoholic" value="non-alcoholic">
+            <label for="non-alcoholic">non-alcoholic</label>
 
             <button v-on:click="applyFilters">filter</button>
 
-            <button v-on:click="retrieveCocktailData">reset all</button>
+            <button v-on:click="resetAllCocktailData">reset all</button>
         </div>
 
         <div class="gallery-display">
@@ -45,6 +45,23 @@
         name: 'CocktailGallery',
         components: {
             CocktailCard
+        },
+        watch: {
+            search: function(newSearch) {
+                localStorage.setItem("search", newSearch)
+            },
+            cocktailSortType: function(newCocktailSortType) {
+                localStorage.setItem("cocktailSortType", newCocktailSortType)
+            },
+            aIsChecked: function(newAIsChecked) {
+                localStorage.setItem("aIsChecked", newAIsChecked)
+            },
+            NaIsChecked: function(newNaIsChecked) {
+                localStorage.setItem("NaIsChecked", newNaIsChecked)
+            }
+        },
+        created: async function() {
+            this.retrieveCocktailData()
         },
         computed: {
             organizedCocktailData: function() {
@@ -89,22 +106,23 @@
         data() {
             return {
                 cocktails: [],
-                search: "",
-                cocktailSortType: "AZName",
-                aIsChecked: "",
-                aIsNotChecked: ""
+                search: localStorage.getItem("search") || "",
+                cocktailSortType: localStorage.getItem("cocktailSortType") || "AZName",
+                aIsChecked: localStorage.getItem("aIsChecked") || false,    // TODO: fix
+                NaIsChecked: localStorage.getItem("NaIsChecked") || false   // TODO: fix
             }
-        },
-        created: async function() {
-            this.retrieveCocktailData()
         },
         methods: {
             async retrieveCocktailData() {
                 this.cocktails = await CocktailData.getCocktailData()
+                this.applyFilters()
+            },
+            async resetAllCocktailData() {
                 this.cleanSearch()
                 this.aIsChecked = false
                 this.NaIsChecked = false
                 this.applyFilters()
+                this.retrieveCocktailData()
             },
             cleanSearch: function() {
                 this.search = ""
