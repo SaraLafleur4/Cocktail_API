@@ -1,8 +1,8 @@
 <template>
     <div class="gallery-option-a-filter">
-        <input type="checkbox" :value="AChecked" @input="onACheckedChanged" id="alcoholic">
+        <input type="checkbox" :checked=AChecked @input="onACheckedChanged" id="alcoholic">
         <label for="alcoholic">alcoholic</label>
-        <input type="checkbox" :value="NAChecked" @input="onNACheckedChanged" id="non-alcoholic">
+        <input type="checkbox" :checked=NAChecked @input="onNACheckedChanged" id="non-alcoholic">
         <label for="non-alcoholic">non-alcoholic</label>
     </div>
 </template>

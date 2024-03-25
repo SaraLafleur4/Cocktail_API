@@ -1,7 +1,6 @@
 <template>
     <div class="gallery-option-search">
         <input type="text" id="search" :value="search" @input="onSearchChanged" placeholder="Search for a Cocktail...">
-        <!-- <button v-if="search" @click="applyFilters">search</button> -->
         <button v-if="search" @click="cleanSearch">clear</button>
     </div>
 </template>

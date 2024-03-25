@@ -2,18 +2,14 @@
     <div class="cocktail-gallery">
         <div class="gallery-options">
             <GalleryOptionSearch v-model:search="search"/>
-            <button v-if="search" @click="applyPreferences">search</button>
-
-            <!-- <GalleryOptionAFilter v-model:AChecked="AChecked" v-model:NAChecked="NAChecked"/> -->
-            <!-- TODO: fix -->
+            <GalleryOptionAFilter v-model:AChecked="AChecked" v-model:NAChecked="NAChecked"/>
             <GalleryOptionSort v-model:cocktailSortType="cocktailSortType"/>
-            <button @click="applyPreferences">sort</button>
         </div>
-        <button @click="resetAllCocktailData">reset all</button>
+        <button @click="resetCocktailData">reset</button>
         
         <div class="gallery-display">
             <CocktailCard
-            v-for="cocktail in cocktails"
+            v-for="cocktail in organizedCocktailData"
             :strDrink="cocktail.strDrink"
             :strCategory="cocktail.strCategory"
             :strGlass="cocktail.strGlass"
@@ -49,11 +45,11 @@
 
                 // alcoholic or not
                 const filterAlcoholic = (a) => {
-                    if (this.aIsChecked && this.NaIsChecked) {
+                    if (this.AChecked && this.NAChecked) {
                         return a.strAlcoholic.toLowerCase().includes("a") // Show all
-                    } else if (this.aIsChecked) {
+                    } else if (this.AChecked) {
                         return !a.strAlcoholic.toLowerCase().includes("no")
-                    } else if (this.NaIsChecked) {
+                    } else if (this.NAChecked) {
                         return a.strAlcoholic.toLowerCase().includes("no")
                     } else {
                         return a.strAlcoholic.toLowerCase().includes("a") // Show all
@@ -87,28 +83,19 @@
                 cocktails: [],
                 search: localStorage.getItem("search") || "",
                 cocktailSortType: localStorage.getItem("cocktailSortType") || "AZName",
-                AChecked: localStorage.getItem("AChecked") || false,    // TODO: fix
-                NAChecked: localStorage.getItem("NAChecked") || false   // TODO: fix
+                AChecked: JSON.parse(localStorage.getItem("AChecked")) || false,
+                NAChecked: JSON.parse(localStorage.getItem("NAChecked")) || false
             }
         },
         methods: {
             async retrieveCocktailData() {
                 this.cocktails = await CocktailData.getCocktailData()
-                this.applyPreferences()
             },
-            async resetAllCocktailData() {
-                this.cleanSearch()       // TODO: fix if needed
+            async resetCocktailData() {
+                this.search = ""
+                this.cocktailSortType = "AZName"
                 this.AChecked = false
                 this.NAChecked = false
-                this.cocktailSortType = "AZName"
-                this.applyPreferences()
-                this.retrieveCocktailData()
-            },
-            cleanSearch: function() {
-                this.search = ""
-            },
-            applyPreferences: function() {
-                this.cocktails = this.organizedCocktailData
             }
         }
     }
