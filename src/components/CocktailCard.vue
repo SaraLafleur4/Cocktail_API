@@ -36,11 +36,15 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        background-color: dodgerblue;
+        background-color: #45F0FF;
         height: 420px;
         margin: 2px;
         padding-top: 22px;
         padding-bottom: 15px;
+    }
+
+    .cocktail-card:hover {
+        background-color: #C445FF;
     }
 
     .strDrinkThumb {

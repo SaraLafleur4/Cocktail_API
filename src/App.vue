@@ -26,25 +26,32 @@
 </script>
 
 <style scoped>
-    header {
-      display: flex;
-      height: 100px;
-      text-align: center;
-      background-color: black;
-      padding-top: 20px;
-      justify-content: space-around;
-    }
+  header {
+    display: flex;
+    height: 100px;
+    text-align: center;
+    background-color: #AA8367;
+    padding-top: 20px;
+    justify-content: space-around;
+  }
 
+  main {
+    background-color: #AA8367;
+    width: 1024px;
+  }
+
+  footer {
+    display: flexbox;
+    height: 100px;
+    background-color: #AA8367;
+    padding-top: 40px;
+    justify-content: space-around;
+    text-align: center;
+  }
+
+  @media (max-width: 1024px) {
     main {
-      width: 1024px;
+      width: 100%;
     }
-
-    footer {
-      display: flexbox;
-      height: 100px;
-      text-align: center;
-      background-color: black;
-      padding-top: 40px;
-      justify-content: space-around;
-    }
+  }
 </style>

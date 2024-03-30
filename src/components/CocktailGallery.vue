@@ -4,8 +4,8 @@
             <GalleryOptionSearch v-model:search="search"/>
             <GalleryOptionAFilter v-model:AChecked="AChecked" v-model:NAChecked="NAChecked"/>
             <GalleryOptionSort v-model:cocktailSortType="cocktailSortType"/>
+            <button @click="resetCocktailData">reset</button>
         </div>
-        <button @click="resetCocktailData">reset</button>
         
         <div class="gallery-display">
             <CocktailCard
@@ -104,15 +104,19 @@
 <style scoped>
     .gallery-options {
         display: flex;
-        background-color: rgb(197, 255, 110);
+        background-color: #D0FF45;
     }
     button {
         margin: 10px;
+        background-color: #FF9245;
+    }
+    button:hover {
+        background-color: #C445FF;
     }
     .gallery-display {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 20px;
-        /* padding: 20px; */
+        padding-top: 20px;
     }
 </style>
