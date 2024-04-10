@@ -39,4 +39,10 @@
         display: flex;
         margin: 10px;
     }
+    @media (min-width: 290px) and (max-width: 819px) {
+        .gallery-option-a-filter {
+            position: absolute;
+            padding-top: 30px;
+        }
+    }
 </style>

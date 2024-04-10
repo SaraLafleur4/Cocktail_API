@@ -37,4 +37,10 @@
         display: flex;
         margin: 10px;
     }
+    @media (min-width: 290px) and (max-width: 819px) {
+        .gallery-option-sort {
+            position: absolute;
+            padding-top: 60px;
+        }
+    }
 </style>

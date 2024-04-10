@@ -37,6 +37,7 @@
         flex-wrap: wrap;
         justify-content: space-around;
         background-color: #45F0FF;
+        width: 324px;
         height: 420px;
         margin: 2px;
         padding-top: 22px;

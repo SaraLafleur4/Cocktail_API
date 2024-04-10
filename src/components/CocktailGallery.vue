@@ -102,6 +102,9 @@
 </script>
 
 <style scoped>
+    .cocktail-gallery {
+        margin: auto;
+    }
     .gallery-options {
         display: flex;
         background-color: #D0FF45;
@@ -115,8 +118,28 @@
     }
     .gallery-display {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: 324px 324px 324px;
+        justify-content: space-evenly;
         gap: 20px;
         padding-top: 20px;
+    }
+    @media (min-width: 820px) and (max-width: 1170px) {
+        .gallery-display {
+            grid-template-columns: 324px 324px;
+        }
+    }
+    @media (min-width: 290px) and (max-width: 819px) {
+        .gallery-options {
+            width: 324px;
+            height: 103px;
+            margin: auto;
+        }
+        button {
+            position: inherit;
+            margin: 35px 0 35px 238px;
+        }
+        .gallery-display {
+            grid-template-columns: 324px;
+        }
     }
 </style>

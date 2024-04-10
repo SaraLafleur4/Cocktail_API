@@ -36,8 +36,10 @@
   }
 
   main {
+    display: flex;
     background-color: #AA8367;
     width: 1024px;
+    margin: auto;
   }
 
   footer {
@@ -49,7 +51,7 @@
     text-align: center;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1170px) {
     main {
       width: 100%;
     }

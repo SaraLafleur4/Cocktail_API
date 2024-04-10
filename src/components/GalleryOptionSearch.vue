@@ -33,4 +33,9 @@
         display: flex;
         margin: 10px;
     }
+    @media (min-width: 290px) and (max-width: 819px) {
+        .gallery-option-search {
+            position: absolute;
+        }
+    }
 </style>
