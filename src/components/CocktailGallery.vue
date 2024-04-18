@@ -9,7 +9,8 @@
         
         <div class="gallery-display">
             <CocktailCard
-            v-for="cocktail in organizedCocktailData"
+            v-for="cocktail in organizedCocktailData" :key="cocktail.idDrink"
+            :idDrink="cocktail.idDrink"
             :strDrink="cocktail.strDrink"
             :strCategory="cocktail.strCategory"
             :strGlass="cocktail.strGlass"

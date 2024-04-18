@@ -43,12 +43,12 @@
   }
 
   footer {
-    display: flexbox;
+    display: flex;
     height: 100px;
+    text-align: center;
     background-color: #AA8367;
     padding-top: 40px;
     justify-content: space-around;
-    text-align: center;
   }
 
   @media (max-width: 1170px) {

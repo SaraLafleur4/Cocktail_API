@@ -14,18 +14,11 @@
     export default {
         name: 'CocktailCard',
         props: {
-            // idDrink: String,
+            idDrink: String,
             strDrink: String,
             strCategory: String,
             strAlcoholic: String,
             strGlass: String,
-            // strInstructions: String,
-            // strIngredient1: String,
-            // strIngredient2: String,
-            // strIngredient3: String,
-            // strIngredient4: String,
-            // strIngredient5: String,
-            // strIngredient6: String,
             strDrinkThumb: {type: String, default: "https://cdn-icons-png.flaticon.com/512/2193/2193419.png"}
         }
     }
