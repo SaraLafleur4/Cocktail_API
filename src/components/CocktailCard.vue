@@ -35,6 +35,7 @@
         margin: 2px;
         padding-top: 22px;
         padding-bottom: 15px;
+        transition: 0.8s ease;
     }
 
     .cocktail-card:hover {

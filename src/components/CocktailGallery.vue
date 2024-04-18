@@ -116,6 +116,7 @@
     }
     button:hover {
         background-color: #C445FF;
+        cursor: pointer;
     }
     .gallery-display {
         display: grid;

@@ -33,6 +33,13 @@
         display: flex;
         margin: 10px;
     }
+    button {
+        background-color: #FF9245;
+    }
+    button:hover {
+        background-color: #C445FF;
+        cursor: pointer;
+    }
     @media (min-width: 290px) and (max-width: 819px) {
         .gallery-option-search {
             position: absolute;
